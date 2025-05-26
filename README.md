@@ -1,40 +1,86 @@
-# UV_installation
 
-Helps you to Install UV and create VENV 
+#  UV Installation and Virtual Environment Setup
 
-I use this as a self note and to create a practice of having a better project Structure.
 
-## Working Directory
+This guide helps with installing `uv` and creating/managing Python virtual environments. It serves as a personal cheatsheet and a way to practice maintaining well-structured project notes.
+
+## 1. Setting up the Working Directory
+
+First, create and navigate to your project directory:
+
+```bash
 mkdir hello-world
 cd hello-world
+```
+
+Initialize uv in your project. This will create necessary configuration files (like pyproject.toml if it doesn't exist):
+
+```bash
 uv init
+```
+*This command sets up your project to be managed by uv.*
 
-This will create some Files for the Working Directory
+# 2. Python Installation and Virtual Environment Management
 
-
-## Installation Python(If needed) and Venv
-
-Creating Venv
+## 2.1. Creating a Virtual Environment
+To create a virtual environment in the current directory (typically in a .venv folder):
+```bash
 uv venv
+```
 
-*sometimes to activate the venv you have to bypass the execution policy to activate the venv*
+## 2.2. Activating the Virtual Environment (Windows PowerShell)
+To activate the newly created virtual environment in PowerShell:
+
+*Note: You might need to adjust your execution policy to allow script execution. Use with caution and understand the implications.*
+
+```bash
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-then:
- .\.venv\Scripts\Activate.ps1
+```
 
-*If you need the specific installation*
-uv python install 3.13  
-*A Python version can be requested, e.g., to create a virtual environment with Python 3.13*
-uv venv --python 3.11
+Then, activate the environment:
+```bash
+.\.venv\Scripts\Activate.ps1
+```
 
-Modify TOML file to add and dependencies.
+For other shells (like bash or zsh), the activation script is typically
+```bash
+ .venv/bin/activate.
+ ```
 
-Finally do
+## 2.3. Installing a Specific Python Version (Optional)
+If you need a specific version of Python that isn't your system default, uv can install it:
+```bash
+uv python install 3.13
+ ```
+
+## 2.4. Creating a Virtual Environment with a Specific Python Version
+You can specify the Python version when creating the virtual environment:
+```bash
+uv venv --python 3.13
+ ```
+
+*This ensures the virtual environment uses Python 3.11, provided uv can find or install it.*
+
+# 3. Managing Dependencies
+
+1. Add Dependencies: Manually edit your pyproject.toml file to list the packages your project needs under the [project.dependencies] section. For example:
+```bash
+[project]
+name = "hello-world"
+version = "0.1.0"
+dependencies = [
+  "requests",
+  "numpy>=1.20",
+]
+ ```
+2. Install Dependencies: After updating pyproject.toml, synchronize your environment to install the specified packages:
+```bash
 uv sync
+ ```
 
-it should create uv.lock file which is a human-readable TOML file but is managed by uv and should not be edited manually.
+*This command installs the packages listed in pyproject.toml into your virtual environment. It will also create a uv.lock file. This lockfile is human-readable (TOML format) but is managed by uv and should not be edited manually.*
 
+# 4. Reference
+For more detailed information, refer to the official uv documentation:
 
-##Reference
-*https://docs.astral.sh/uv/*
-
+[Official uv Documentation](https://docs.astral.sh/uv/ "Astral uv documentation site")
