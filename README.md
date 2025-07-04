@@ -42,6 +42,11 @@ Then, activate the environment:
 .\.venv\Scripts\Activate.ps1
 ```
 
+or if using gitbash, activate the environment:
+```bash
+source .venv/Scripts/activate
+```
+
 For other shells (like bash or zsh), the activation script is typically
 ```bash
  .venv/bin/activate.
