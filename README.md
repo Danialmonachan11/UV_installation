@@ -2,7 +2,7 @@
 #  UV Installation and Virtual Environment Setup
 
 
-This guide helps with installing `uv` and creating/managing Python virtual environments. It serves as a personal cheatsheet and a way to practice maintaining well-structured project notes.
+This guide helps with installing [UV](https://docs.astral.sh/uv/getting-started/installation/#pypi) and creating/managing Python virtual environments. It serves as a personal cheatsheet and a way to practice maintaining well-structured project notes.
 
 ## 1. Setting up the Working Directory
 
